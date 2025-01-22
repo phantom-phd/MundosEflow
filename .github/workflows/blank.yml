@@ -13,19 +13,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository code
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
+      # Verify files in the directory (Debugging step)
+      - name: List Files in Directory
+        run: ls -R
+
+      # Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
+      # Install dependencies
       - name: Install Dependencies
         run: npm install
 
+      # Run tests
       - name: Run Tests
         run: npm test
 
+      # Build the project
       - name: Build Project
         run: npm run build
